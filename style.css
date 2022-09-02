@@ -63,19 +63,6 @@ table {
     table-layout:fixed;
     text-align:  center;
 }
-/*
-.specialCol {
-    background-color:  var(--clr-dark);
-    color: var(--clr-light);
-}
-
-tbody>.specialCol{
-
-background-color:  var(--clr-light);
-color: var(--clr-light);
- 
-}
-*/
 
 tbody td:nth-child(6), tbody td:nth-child(7), 
 thead th:nth-child(6), thead th:nth-child(7),
@@ -84,14 +71,15 @@ tfoot td:nth-child(6), tfoot td:nth-child(7){
     color: var(--clr-dark);
 }
 
-
-
-/*
-tfoot:nth-of-type(2){
-    background-color: var(--clr-accent);
-    color: var(--clr-dark);
+button {
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    color: var(--clr-light);
+    border-color:  var(--clr-accent);
+    padding: 12px 24px;
 }
-*/
 
 /*TITLE CSS*/
 
