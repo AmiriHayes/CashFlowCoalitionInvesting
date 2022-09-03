@@ -35,6 +35,10 @@
     }
 }
 
+@media (max-width: 800px) {
+    /* Manipulated by JavaScript*/
+}
+
 body {
     background: var(--clr-light);
     color: var(--clr-dark);
@@ -80,6 +84,8 @@ button {
     border-color:  var(--clr-accent);
     padding: 12px 24px;
 }
+
+
 
 /*TITLE CSS*/
 

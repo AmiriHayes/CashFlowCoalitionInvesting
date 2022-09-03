@@ -21,8 +21,12 @@ var myTable = document.getElementById('table');
 
 //Current Price Column
 currentPrice = [];
+originalPrice = [];
 for (var j = 1; j < (myTable.rows.length-1); j++) {
-    currentPrice[j] = '0';
+    originalPrice[j] = myTable.rows[j].cells[3].innerHTML;
+}
+for (var j = 1; j < (myTable.rows.length-1); j++) {
+    currentPrice[j] = '0.00';
     myTable.rows[j].cells[5].innerHTML = '$' + currentPrice[j];
 }
 
@@ -46,7 +50,7 @@ for (var i = 1; i < (myTable.rows.length-1); i++) {
 for (var i = 1; i < (myTable.rows.length-1); i++) {
     currentGain[i] = currentValue[i] - originalCost[i];
     if (currentGain[i] == originalCost[i] * -1) {
-        myTable.rows[i].cells[7].innerHTML = '$0';
+        myTable.rows[i].cells[7].innerHTML = '$0.00';
     } else {
         myTable.rows[i].cells[7].innerHTML = '$' + currentGain[i].toFixed(2);
     }
@@ -91,8 +95,38 @@ for (var i = 1; i < (myTable.rows.length-1); i++) {
     }
 }
 
+//Manipulates Table Elements based on screen-size
+document.addEventListener('DOMContentLoaded', init);
+
+function init() {
+    let query = window.matchMedia("(max-width: 800px)");
+    if (query.matches) {
+
+        for (var i = 0; i < myTable.rows.length; i++) {
+            myTable.rows[i].deleteCell(1); //delete date column
+            myTable.rows[i].deleteCell(8); //delete %increase
+            myTable.rows[i].deleteCell(7); //delete %portfolio
+            myTable.rows[i].deleteCell(6); //delete %portfolio
+        }
+    }
+}
 
 function dollarToNum(strIn) {
     var value = strIn.substring(1); // deletes the $ sign
     return Number(value);
 }
+
+
+            /*
+            for (var i = 0; i < row[0].cells.length; i++) {
+                    for (var j = 0; j < row.length; j++) {
+                        row[j].deleteCell(i);
+                    }
+                }
+            }
+            */
+
+            
+
+
+
