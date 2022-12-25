@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+	<title>Cash Flow Coalitition Investment Club</title>
+</head>
+<body>
+
+	<!-- HEADER OF THE WEBSITE, on every page-->
+	<header>
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <dim>
+                <a href="index.html" class="topLeftHeader">CFCIC / Home Page</a>
+            </dim>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="login.html" class="nav__link">Login</a></li>
+                    <li class="nav__item"><a href="index.html#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    <!-- LOGIN TITLE-->
+    <div><br>
+        <h2 class="titleI"> Login to <b>CFCIC</b>: </h2>
+    </div>
+
+    <!-- LOGIN ERROR SECTION-->
+    <div id="loginError" class="loginErrorSec">
+        <p id="loginErrorMsg"> Invalid Username 
+            <span id="loginErrorMsgSecond">and/or Password</span>
+        </p>
+    </div>
+
+    <!-- USERNAME/PASSWORD SECTION-->
+    <section class = "loginSection" id="loginForm"><br>
+        <div class = "aboutText">
+                <p>Username:</p>
+                <input id="usernameField" type="text" class="login" placeholder="Enter Username">
+                <p>Password:</p>
+                <input id="passwordField" type="text" class="login" placeholder="Enter Password"><br>
+                <button class="loginBtn" id="loginButton">LOGIN</button>
+            <br><br>
+        </div>
+    </section>
+
+    <!-- NONMEMBER SECTION-->
+
+    <script src="index.js"></script>
+
+</body>
+</html>

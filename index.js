@@ -1,7 +1,7 @@
 //Code for the hamburger menu
 
 const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelectorAll('.nav__link')
+const navLinks = document.querySelectorAll('.nav__link');
 
 navToggle.addEventListener('click', () => {
     document.body.classList.toggle('nav-open');
@@ -13,14 +13,22 @@ navLinks.forEach(link => {
     })
 })
 
+//Code for the login page
+
+const loginButton = document.getElementById("loginButton")
+const loginErrorMsg = document.getElementById("loginErrorMsg")
 
 //Fill in values for the table on homepage; As of 9/1/22 the table is
 //10 across by 20 down. Top and bottom elements are header and foot.
 
 var myTable = document.getElementById('table');
 
-//Current Price Column
-currentPrice = [];
+//Current Price Column]
+//src="jquery-csv.js"
+//var csv = require('jquery-csv');
+//var currentPrice = $.csv.toArrays(datasheet.csv);
+
+//currentPrice = [];
 originalPrice = [];
 for (var j = 1; j < (myTable.rows.length-1); j++) {
     originalPrice[j] = myTable.rows[j].cells[3].innerHTML;
@@ -116,17 +124,39 @@ function dollarToNum(strIn) {
     return Number(value);
 }
 
+/*https://medium.com/justinctollison/using-javascript-fetch-
+to-grab-yahoo-finance-api-949fd24876c9
 
-            /*
-            for (var i = 0; i < row[0].cells.length; i++) {
-                    for (var j = 0; j < row.length; j++) {
-                        row[j].deleteCell(i);
-                    }
-                }
-            }
-            */
+const config = {
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': '52cb00670dmsh2d8c3c32982baf9p118135jsna0059fbaecfe',
+        'X-RapidAPI-Host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
+    }
+};
 
-            
+fetch('https://apidojo-yahoo-finance-v1.p.rapidapi.com/auto-complete?q=GME&region=US', config)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(stocks){
+        console.log(stocks);
+        stocks.quoteresponse.result.forEach(stock => stocksList(stock));
+    })
+    .catch(function(error){
+        alert("Error: Finance API");
+    });
+
+//stock = document.createElement('ol');
+//myTable.rows[3].cells[5].innerHTML = stock.symbol;
 
 
+function stocksList(stock) {
+    myTable.rows[3].cells[5].innerHTML = stock.symbol;
+}
+
+//stock_info.get_live_price()
+//https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?region=US&symbols=AMC%2CGME
+
+*/
 

@@ -6,7 +6,7 @@
 
 /* Custom Properties, update these for global changes */
 :root {
-    --ff-primary: 'Source Sans Pro', sans-serif;
+    --ff-primary: serif;
     --ff-secondary: 'Source Code Pro', monospace;
     
     --fw-reg: 300;
@@ -46,6 +46,8 @@ body {
     font-family: var(--ff-primary);
     font-size: var(--fs-body);
     line-height: 1.6;
+    margin-left: 2.0%;
+    margin-right: 2.0%;
 }
 
 section {
@@ -86,7 +88,6 @@ button {
 }
 
 
-
 /*TITLE CSS*/
 
 .title {
@@ -107,13 +108,14 @@ button {
     background: var(--clr-accent);
     color:  var(--clr-dark);
     border-radius: 0%;
+    text-decoration: none;
 }
 
 .loginLink:hover {
-    transform: scale(1.25);
+    transform: scale(1.15);
 }
 
-.topleftHeader{
+.topLeftHeader{
     margin: 0;
     display: inline;
     position: absolute;
@@ -121,6 +123,7 @@ button {
     top:10px;
     left:20px;
     color: var(--clr-dark);
+    text-decoration: none;
 }
 
 /*ABOUT CSS*/
@@ -156,6 +159,9 @@ button {
 
 .titleI {
     text-align:  center;
+    text-decoration: none;
+    background: center;
+
 }
 
 
@@ -270,12 +276,81 @@ button {
     font-size: 3.3em;
 }
 
+/*LOGIN CSS*/
 
+.loginSection {
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
 
+}
 
+.login {
+    display: flex;
+    background: var(--clr-light);
+    color: var(--clr-accent);
+    text-align: center;
+    border: 5px;
+    width: 95%;
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: center;
+}
 
+::placeholder {
+    color: white;
+    opacity: 0.9;
+}
 
+.loginBtn {
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    color: var(--clr-light);
+    background: var(--clr-dark);
+    border-color:  var(--clr-light);
+    padding: 12px 24px;
 
+}
+
+.loginBtn:hover {
+    transform: scale(1.15);
+    color: var(--clr-accent);
+    
+}
+
+.loginErrorSec {
+    text-align: center;
+    color: var(--clr-accent);
+    display: none;
+}
+
+.spinners {
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    text-align:  center;
+    background: center;
+}
+
+.spinny {
+    display: inline-block;
+    color: var(--clr-accent);
+    font-size: 48px;
+    animation: spin linear infinite 5s forwards;
+    margin-left:  7.5px;
+    margin-right: 7.5px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg) }
+}
 
 
 
