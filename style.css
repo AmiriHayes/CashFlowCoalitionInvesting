@@ -25,7 +25,6 @@
     --bs: 0.25em 0.25em 0.75em rgba(0,0,0,.25),
           0.125em 0.125em 0.25em rgba(0,0,0,.15);
 }
-
 @media (min-width: 800px) {
     :root {
         --fs-h1: 4.5rem;
@@ -34,7 +33,6 @@
         --fs-body: 1.125rem;
     }
 }
-
 @media (max-width: 800px) {
     /* Manipulated by JavaScript*/
 }
@@ -49,16 +47,13 @@ body {
     margin-left: 2.0%;
     margin-right: 2.0%;
 }
-
 section {
     background: var(--clr-dark);
     border-radius:  1em;
 }
-
 b {
     color: var(--clr-accent);
 }
-
 table {
     margin-left: auto;
     margin-right: auto;
@@ -69,14 +64,12 @@ table {
     table-layout:fixed;
     text-align:  center;
 }
-
 tbody td:nth-child(6), tbody td:nth-child(7), 
 thead th:nth-child(6), thead th:nth-child(7),
 tfoot td:nth-child(6), tfoot td:nth-child(7){
     background-color: var(--clr-accent);
     color: var(--clr-dark);
 }
-
 button {
     text-align: center;
     margin: 0 auto;
@@ -87,22 +80,17 @@ button {
     padding: 12px 24px;
 }
 
-
 /*TITLE CSS*/
-
 .title {
     text-align:  center;
     line-height: 1;
     margin: 5%;
 }
-
 .titleHeader {
     font-size: var(--fs-h2);
     color: var(--clr-accent);
 }
-
-.loginLink {
-    line-height:  0;
+.loginLink { 
     display: inline-block;
     padding: .8em 2.5em;
     background: var(--clr-accent);
@@ -110,11 +98,9 @@ button {
     border-radius: 0%;
     text-decoration: none;
 }
-
 .loginLink:hover {
     transform: scale(1.15);
 }
-
 .topLeftHeader{
     margin: 0;
     display: inline;
@@ -127,14 +113,11 @@ button {
 }
 
 /*ABOUT CSS*/
-
 .about {
     background: var(--clr-dark);
     color: var(--clr-light);
-    margin:  5%;
-    
+    margin:  5%;  
 }
-
 .aboutText {
     margin-left:  20px;
     margin-right: 20px;
@@ -143,28 +126,22 @@ button {
 }
 
 /*INFORMATION CSS*/
-
 .information {
     background: var(--clr-dark);
     color: var(--clr-light);
     margin:  5%;
 }
-
 .informationText {
     margin-left:  20px;
     margin-right: 20px;
     margin-bottom: 70px;
     margin-top: 20px;
 }
-
 .titleI {
     text-align:  center;
     text-decoration: none;
     background: center;
-
 }
-
-
 .interests {
     display: flex;
     flex-wrap: nowrap;
@@ -174,7 +151,6 @@ button {
     margin: 0;
     list-style: none;
 }
-
 .interest {
     display: flex;
     background: var(--clr-accent);
@@ -188,42 +164,33 @@ button {
     justify-content: center;
     align-items: center;
 }
-
 .myStats {
     background-color: var(--clr-dark);
     background-size: cover;
     color: var(--clr-light);
     text-align: center;
 }
-
 .stats {
     margin-bottom: 4em;
 }
-
 .stat {
     max-width: 500px;
     margin: 0 auto;
     text-decoration: none;
 }
-
-
 .my-services {
     background-size: cover;
     /* background-blend-mode: multiply; */
     color: var(--clr-light);
     text-align: center;
 }
-
 .service_link {
     color: var(--clr-light);
     text-decoration: none;
 }
-
 .service_link hover {
     opacity:  .9;
 }
-
-
 .my-services__about {
     background-color: var(--clr-light);
     background-size: cover;
@@ -231,12 +198,10 @@ button {
     color: var(--clr-light);
     text-align: center;
 }
-
 .section__title--services {
     color: var(--clr-light);
     position: relative;
 }
-
 .section__title--services::after {
     content: '';
     display: block;
@@ -246,45 +211,37 @@ button {
     background: var(--clr-light);
     opacity: 0.25;
 }
-
 .services {
     margin-bottom: 4em;
 }
-
 .service {
     max-width: 500px;
     margin: 0 auto;
     text-decoration: none;
 }
-
 @media (min-width: 800px) {
     .services {
         display: flex;
         max-width: 1000px;
         margin-left: auto;
         margin-right: auto;
-    }
-    
+    }  
     .service + .service {
         margin-left: 2em;
     }
 }
-
 .giant {
     font-size: 3.3em;
 }
 
 /*LOGIN CSS*/
-
 .loginSection {
     background: var(--clr-dark);
     color: var(--clr-light);
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
-
 }
-
 .login {
     display: flex;
     background: var(--clr-light);
@@ -299,36 +256,43 @@ button {
     align-items: center;
     margin: center;
 }
-
+@media (max-width: 400px) {
+    .loginSection {
+        width: 90%;
+        margin: auto;
+    }
+    .login {
+        width: 95%;
+        margin: auto;
+    }
+    .about, .information {
+        width: 95%;
+        margin: auto;
+    }
+}
 ::placeholder {
     color: white;
     opacity: 0.9;
 }
-
 .loginBtn {
     text-align: center;
-    margin: 0 auto;
+    margin-top: 5%;
     display: flex;
     justify-content: center;
     color: var(--clr-light);
     background: var(--clr-dark);
     border-color:  var(--clr-light);
     padding: 12px 24px;
-
 }
-
 .loginBtn:hover {
     transform: scale(1.15);
-    color: var(--clr-accent);
-    
+    color: var(--clr-accent); 
 }
-
 .loginErrorSec {
     text-align: center;
     color: var(--clr-accent);
     display: none;
 }
-
 .spinners {
     align-items: center;
     justify-content: center;
@@ -336,7 +300,6 @@ button {
     text-align:  center;
     background: center;
 }
-
 .spinny {
     display: inline-block;
     color: var(--clr-accent);
@@ -345,52 +308,27 @@ button {
     margin-left:  7.5px;
     margin-right: 7.5px;
 }
-
 @keyframes spin {
     to { transform: rotate(360deg) }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* header */
-
 header {
     display: flex;
     justify-content: space-between;
     padding: 1em;
 }
-
 .logo {
     max-width: 100px;
 }
-
 .topleftTitle{
     margin: 0;
     display: inline;
     position: absolute;
-    top:15px;
-    left:30px;
+    top: 10px;
+    left: 25px;
     color: var(--clr-dark);
 }
-
 .nav {
     position: fixed;
     background: var(--clr-dark);
@@ -399,12 +337,10 @@ header {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100;
-    
+    z-index: 100; 
     transform: translateX(100%);
     transition: transform 250ms cubic-bezier(.5, 0, .5, 1);
 }
-
 .nav__list {
     list-style: none;
     display: flex;
@@ -415,17 +351,14 @@ header {
     margin: 0;
     padding: 0;
 }
-
 .nav__link {
     color: inherit;
-    font-size: var(--fs-h2);
+    font-size: var(--fs-h1);
     text-decoration: none;
 }
-
 .nav__link:hover {
     color: var(--clr-light);
 }
-
 .nav-toggle {
     padding: .5em;
     background: transparent;
@@ -436,11 +369,9 @@ header {
     top: 1em;
     z-index: 1000;
 }
-
 .nav-open .nav {
     transform: translateX(0);
 }
-
 .nav-open .nav-toggle {
     position: fixed;
 }
@@ -448,20 +379,16 @@ header {
 .nav-open .hamburger {
     transform: rotate(.625turn);
 }
-
 .nav-open .hamburger::before {
     transform: rotate(90deg) translateX(-6px);
 }
-
 .nav-open .hamburger::after {
     opacity: 0;
 }
-
 .hamburger {
     display: block;
     position: relative;
 }
-
 .hamburger,
 .hamburger::before,
 .hamburger::after {
@@ -471,8 +398,6 @@ header {
     border-radius: 1em;
     transition: transform 250ms ease-in-out;
 }
-
-
 .hamburger::before,
 .hamburger::after {
     content: '';
@@ -480,26 +405,21 @@ header {
     left: 0;
     right: 0;
 }
-
 .hamburger::before { top: 6px; }
 .hamburger::after { bottom: 6px; }
 
 
 /*  Intro section  */
-
 .intro {
     position: relative;
 }
-
 .intro__img {
     box-shadow: var(--bs);
     border-radius: 10%
 }
-
 .section__subtitle--intro {
     display: inline-block;
 }
-
 @media (min-width: 600px) {
     .intro {
         display: grid;
@@ -510,15 +430,13 @@ header {
             "img title"
             "img subtitle";
         grid-template-columns: min-content max-content;
-    }
-    
+    }   
     .intro__img {
         grid-area: img;
         min-width: 250px;
         position: relative;
         z-index: 2;
     }    
-    
     .section__subtitle--intro {
         align-self: start;
         grid-column: -1 / 1;
