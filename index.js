@@ -57,7 +57,7 @@ var price_data = csv.toString().split("\r");*/
 var myTable = document.getElementById('table');
 
 //Initializes currentPrice array using Python CSV data
-var currentPrice = [117.01,134.76,99.4,134.76,99.4,43.5,43.5,49.92,49.92,112.15,113.51,113.51,239.23,239.23,69.49,94.96,120.31,120.31];
+var currentPrice = [89.0, 146.71, 100.3, 146.71, 100.3, 42.83, 42.83, 50.18, 50.18, 110.52, 100.46, 100.46, 249.22, 249.22, 73.93, 91.16, 110.98, 110.98];
 for (var k = 1; k < (myTable.rows.length-1); k++) {
     myTable.rows[k].cells[5].innerHTML = '$' + currentPrice[k-1].toFixed(2);
 }
