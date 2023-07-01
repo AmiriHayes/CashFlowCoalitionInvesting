@@ -16,6 +16,28 @@ navLinks.forEach(link => {
 const loginButton = document.getElementById("loginButton")
 const loginErrorMsg = document.getElementById("loginErrorMsg")
 
+let login = (username,password)=>{
+    document.getElementById('userna').value = ''
+    document.getElementById('passwo').value = ''
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({"username":username,"password":password});
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+    fetch("https://wkijf7fffh.execute-api.us-east-2.amazonaws.com/production", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+        localStorage.setItem('memberData', JSON.stringify(JSON.parse(result).body))
+        window.location.href = "member.html";
+    })
+    .catch(error => console.log('error', error));
+}
+
+// JSON.parse(result).body
 //Fill in values for the table on homepage; As of 12/1/23 the table is
 //10 across by 20 down. Top and bottom elements are header and foot.
 
@@ -136,40 +158,3 @@ function dollarToNum(strIn) {
     var value = strIn.substring(1); // deletes the $ sign
     return Number(value);
 }
-
-/*https://medium.com/justinctollison/using-javascript-fetch-
-to-grab-yahoo-finance-api-949fd24876c9
-
-const config = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': '52cb00670dmsh2d8c3c32982baf9p118135jsna0059fbaecfe',
-        'X-RapidAPI-Host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
-    }
-};
-
-fetch('https://apidojo-yahoo-finance-v1.p.rapidapi.com/auto-complete?q=GME&region=US', config)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(stocks){
-        console.log(stocks);
-        stocks.quoteresponse.result.forEach(stock => stocksList(stock));
-    })
-    .catch(function(error){
-        alert("Error: Finance API");
-    });
-
-//stock = document.createElement('ol');
-//myTable.rows[3].cells[5].innerHTML = stock.symbol;
-
-
-function stocksList(stock) {
-    myTable.rows[3].cells[5].innerHTML = stock.symbol;
-}
-
-//stock_info.get_live_price()
-//https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?region=US&symbols=AMC%2CGME
-
-*/
-

@@ -8,14 +8,13 @@
 	<title>Cash Flow Coalitition Investment Club</title>
 </head>
 <body>
-
 	<!-- HEADER OF THE WEBSITE, on every page-->
 	<header>
             <button class="nav-toggle" aria-label="toggle navigation">
                 <span class="hamburger"></span>
             </button>
             <dim>
-                <a href="index.html" class="topLeftHeader">CFCIC / Home Page</a>
+                <a href="index.html" class="topLeftHeader">CFCIC / Login Page</a>
             </dim>
             <nav class="nav">
                 <ul class="nav__list">
@@ -39,20 +38,14 @@
     </div>
 
     <!-- USERNAME/PASSWORD SECTION-->
-    <section class = "loginSection" id="loginForm"><br>
-        <div class = "aboutText">
-                <p>Username:</p>
-                <input id="usernameField" type="text" class="login" placeholder="Enter Username">
-                <p>Password:</p>
-                <input id="passwordField" type="text" class="login" placeholder="Enter Password"><br>
-                <button class="loginBtn" id="loginButton">LOGIN</button>
-            <br><br>
-        </div>
+    <section class = "loginSection" id="loginForm">
+        <input id="userna" type="text" class="login" placeholder="Enter Username">
+        <input id="passwo" type="text" class="login" placeholder="Enter Password"><br>
     </section>
+    <button class="loginBtn" id="loginButton"
+    onclick="login(document.getElementById('userna').value,document.getElementById('passwo').value)"
+    >LOGIN</button>
 
-    <!-- NONMEMBER SECTION-->
-    
     <script src="index.js"></script>
-
 </body>
 </html>

@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+html {background-color: black}
+
 /* Custom Properties, update these for global changes */
 :root {
     --ff-primary: serif;
@@ -12,8 +14,8 @@
     --fw-reg: 300;
     --fw-bold: 900;
     
-    --clr-light: black;
-    --clr-dark: white;
+    --clr-light: #050505;
+    --clr-dark: #F5F5F5;
     --clr-gray: gray;
     --clr-accent: #1fd655; 
     
@@ -38,7 +40,6 @@
 }
 
 body {
-    background: var(--clr-light);
     color: var(--clr-dark);
     margin: 0;
     font-family: var(--ff-primary);
@@ -46,6 +47,14 @@ body {
     line-height: 1.6;
     margin-left: 2.0%;
     margin-right: 2.0%;
+    position: relative
+}
+body:after {
+    background: radial-gradient(
+        800px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(255, 255, 255, 0.06),
+        transparent 40%
+    );
 }
 section {
     background: var(--clr-dark);
@@ -97,6 +106,7 @@ button {
     color:  var(--clr-dark);
     border-radius: 0%;
     text-decoration: none;
+    border-radius: 5px;
 }
 .loginLink:hover {
     transform: scale(1.15);
@@ -141,6 +151,9 @@ button {
     text-align:  center;
     text-decoration: none;
     background: center;
+}
+.title h2 {
+    letter-spacing: -6px;
 }
 .interests {
     display: flex;
@@ -236,33 +249,26 @@ button {
 
 /*LOGIN CSS*/
 .loginSection {
-    background: var(--clr-dark);
-    color: var(--clr-light);
+    background: var(--clr-light);
     width: 60%;
+    margin: auto -1em -1em;
     margin-left: 20%;
     margin-right: 20%;
 }
 .login {
+    border: none;
     display: flex;
-    background: var(--clr-light);
-    color: var(--clr-accent);
+    color: var(--clr-light);
     text-align: center;
-    border: 5px;
-    width: 95%;
+    width: 100%;
     height: 50px;
-    margin-top: 5px;
+    margin-top: 2em;
     margin-bottom: 5px;
-    justify-content: center;
-    align-items: center;
-    margin: center;
+    border-radius: 10px;
 }
 @media (max-width: 400px) {
     .loginSection {
         width: 90%;
-        margin: auto;
-    }
-    .login {
-        width: 95%;
         margin: auto;
     }
     .about, .information {
@@ -271,22 +277,21 @@ button {
     }
 }
 ::placeholder {
-    color: white;
+    color: var(--clr-light);
     opacity: 0.9;
 }
 .loginBtn {
-    text-align: center;
-    margin-top: 5%;
-    display: flex;
     justify-content: center;
+    background: var(--clr-accent);
     color: var(--clr-light);
-    background: var(--clr-dark);
-    border-color:  var(--clr-light);
-    padding: 12px 24px;
+    width: min(50%, 400px);
+    height: 50px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: 10px;
 }
 .loginBtn:hover {
     transform: scale(1.15);
-    color: var(--clr-accent); 
 }
 .loginErrorSec {
     text-align: center;
@@ -312,7 +317,77 @@ button {
     to { transform: rotate(360deg) }
 }
 
-/* header */
+/* MEMBER CSS */
+.flex-container {
+    display: flex;
+}
+.flex-container > div {
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    border-radius: 10px;
+    width: 33.3%;
+    margin: 10px;
+    text-align: center;
+    font-size: 2em;
+    border-top: 5px solid var(--clr-accent);
+    border-bottom: 5px solid var(--clr-accent);
+}
+.flex-container h5 {
+    color: var(--clr-accent);
+    margin-top: 30px;
+    margin-bottom: -30px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+    background: var(--clr-accent);
+    width: 100%;
+    height: 120px;
+    padding-top: 25px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 30px 0;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    padding: 10px;
+    width: 100%;
+    margin-top: 30px;
+}
+.dropdown-content a {
+    text-decoration: none;
+    color: var(--clr-light);
+}
+.dropdown-content a div {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: var(--clr-dark);
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+@media (max-width: 800px) {
+    .flex-container{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .flex-container > div {
+        width: 80%;  
+        border: none;
+        border-left: 5px solid var(--clr-accent);
+        border-right: 5px solid var(--clr-accent);
+    }
+    .dropdown {
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+/* HEADER CSS */
 header {
     display: flex;
     justify-content: space-between;

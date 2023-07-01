@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+	<title>Cash Flow Coalitition Investment Club</title>
+</head>
+<script defer>
+  document.addEventListener('DOMContentLoaded', populateMemberPage);
+  function populateMemberPage() { 
+    let data = JSON.parse(JSON.parse(localStorage.getItem('memberData')))
+    console.log(data)
+    document.getElementById("topPage").innerHTML = `CFCIC / ${data["Item"]["name"].split(" ").map((n)=>n[0]).join("")}`
+    document.getElementById("topTitle").innerHTML = `Welcome <b>${data["Item"]["name"]}</b>`
+    document.getElementById("holdings").innerHTML = `$${data["Item"]["holdings"]}`
+    document.getElementById("shares").innerHTML = `${data["Item"]["share"]}`
+    document.getElementById("percentage").innerHTML = `${data["Item"]["percentage"]}%`
+  }
+  // {"Item": {"holdings": "900", "percentage": "15", "password": "password", "share": "60", "ID": "amirihayes"}, "ResponseMetadata": {"RequestId": "ISCHG4UUOUCV77D7JKQQ0NLMFNVV4KQNSO5AEMVJF66Q9ASUAAJG", "HTTPStatusCode": 200, "HTTPHeaders": {"server": "Server", "date": "Mon, 26 Jun 2023 14:50:11 GMT", "content-type": "application/x-amz-json-1.0", "content-length": "128", "connection": "keep-alive", "x-amzn-requestid": "ISCHG4UUOUCV77D7JKQQ0NLMFNVV4KQNSO5AEMVJF66Q9ASUAAJG", "x-amz-crc32": "3080975235"}, "RetryAttempts": 0}}
+</script>
+<body>
+
+	<!-- HEADER OF THE WEBSITE, on every page-->
+	<header> 
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <div>
+                <!-- "CFCIC / Name" -->
+                <a href="index.html" class="topLeftHeader" id="topPage"></a>
+            </div>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="login.html" class="nav__link">Login</a></li>
+                    <li class="nav__item"><a href="index.html#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+    </header>
+
+	<!-- WEBSITE TITLE-->
+  <div><br>
+    <!-- Welcome <b>Amiri</b>:  -->
+    <h2 class="titleI" id="topTitle"></h2>
+    <h3 class="titleI">Personal Dashboard:</h3>
+  </div>  
+
+  <!-- DASHBOARD -->
+  <div class="flex-container">
+    <div>
+      <h5>HOLDINGS</h5>
+      <p id="holdings"></p>
+    </div>
+    <div>
+      <h5>SHARES</h5>
+      <p id="shares"></p>
+    </div>
+    <div >
+      <h5>PERCENTAGE</h5>
+      <p id="percentage"></p>
+    </div>  
+  </div>
+
+	<!-- POWERPOINT ARCHIVE -->
+    
+    <div class="dropdown">
+      <h3 class="titleI">Our Powerpoints & Info:</h3>
+      <div class="dropdown-content">
+        <a href="#"><div>Powerpoint 1</div></a>
+        <a href="#"><div>Powerpoint 2</div></a>
+        <a href="#"><div>Powerpoint 3</div></a>
+        <a href="#"><div>Powerpoint 4</div></a>
+        <a href="#"><div>Powerpoint 5</div></a>
+      </div>
+    </div>
+
+  <!-- REAL ESTATE -->
+	
+
+<script src="index.js"></script>
+
+</body>
+</html>
