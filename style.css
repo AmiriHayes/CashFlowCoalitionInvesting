@@ -73,6 +73,7 @@ table {
     table-layout:fixed;
     text-align:  center;
 }
+table, th, td { border: 1px solid black; }
 tbody td:nth-child(6), tbody td:nth-child(7), 
 thead th:nth-child(6), thead th:nth-child(7),
 tfoot td:nth-child(6), tfoot td:nth-child(7){
@@ -121,6 +122,9 @@ button {
     color: var(--clr-dark);
     text-decoration: none;
 }
+.bolder {
+    font-weight: bolder;
+}
 
 /*ABOUT CSS*/
 .about {
@@ -133,6 +137,10 @@ button {
     margin-right: 20px;
     margin-bottom: 70px;
     margin-top: 20px;
+}
+.aboutLink {
+    text-decoration: none;
+    color: var(--clr-light);
 }
 
 /*INFORMATION CSS*/
@@ -168,7 +176,7 @@ button {
     display: flex;
     background: var(--clr-accent);
     border: 5px;
-    width: 51%;
+    width: 80%;
     height: 75px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -241,6 +249,9 @@ button {
     }  
     .service + .service {
         margin-left: 2em;
+    }
+    .interest {
+        width: 51%;
     }
 }
 .giant {
@@ -320,6 +331,11 @@ button {
 /* MEMBER CSS */
 .flex-container {
     display: flex;
+}
+.memberLink {
+    text-decoration: none;
+    color: var(--clr-dark);
+    text-transform: uppercase;
 }
 .flex-container > div {
     background-color: var(--clr-dark);
@@ -521,4 +537,10 @@ header {
         left: -1.5em;
         width: calc(100% + 1.5em);
     }
+}
+
+/* ADMIN CSS */
+.title input {
+    margin: -20px 20px;
+    padding: 10px;
 }

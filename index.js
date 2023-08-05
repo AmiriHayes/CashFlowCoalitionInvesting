@@ -12,7 +12,7 @@ navLinks.forEach(link => {
     })
 })
 
-//Code for the login page
+// Code for the login page
 const loginButton = document.getElementById("loginButton")
 const loginErrorMsg = document.getElementById("loginErrorMsg")
 
@@ -37,9 +37,39 @@ let login = (username,password)=>{
     .catch(error => console.log('error', error));
 }
 
-// JSON.parse(result).body
-//Fill in values for the table on homepage; As of 12/1/23 the table is
-//10 across by 20 down. Top and bottom elements are header and foot.
+// Code for the admin page
+
+let pushtoDatabase = (e) => {
+    e.preventDefault()
+    console.log('got here')
+    // window.location.replace("https://amirihayes.com/")
+
+    // document.getElementById('userna').value = ''
+    // document.getElementById('passwo').value = ''
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
+    // var raw = JSON.stringify({"username":username,"password":password});
+    // var requestOptions = {
+    //     method: 'POST',
+    //     headers: myHeaders,
+    //     body: raw,
+    //     redirect: 'follow'
+    // };
+    // fetch("https://wkijf7fffh.execute-api.us-east-2.amazonaws.com/production", requestOptions)
+    // .then(response => response.text())
+    // .then(result => {
+    //     localStorage.setItem('memberData', JSON.stringify(JSON.parse(result).body))
+    //     window.location.href = "member.html";
+    // })
+    // .catch(error => console.log('error', error));
+}
+
+// Code to determine the next meeting (3rd Saturday of month)
+const meetingday = document.getElementById("nextMeeting")
+let SATURDAY = 6, date = new Date();
+let firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+dayOfMeeting = SATURDAY - firstDayOfMonth + 15
+meetingday.innerHTML = `${date.getMonth() + 1}/${dayOfMeeting}/${String(date.getFullYear()).slice(-2)}`
 
 //Manipulates Table Elements based on screen-size
 document.addEventListener('DOMContentLoaded', init);
@@ -63,94 +93,104 @@ function init() {
     }
 }
 
-/*Gets the stock data from CSV file which constantly updates (YOUTUBE)
-const fs = require("fs");
-const csv = require('csvtojson');
-(async () => {
-    var price_data = await csv().fromFile("datasheet.csv");
-    console.log(price_data);
-})();*/
-
-/*Gets the stock data from CSV file which constantly updates (GEEKSFORGEEKS)
-const fs = require("fs");
-csv = fs.readFileSync("datasheet.csv");
-var price_data = csv.toString().split("\r");*/
-
 var myTable = document.getElementById('table');
 
-//Initializes currentPrice array using Python CSV data
-var currentPrice = [89.0, 146.71, 100.3, 146.71, 100.3, 42.83, 42.83, 50.18, 50.18, 110.52, 100.46, 100.46, 249.22, 249.22, 73.93, 91.16, 110.98, 110.98];
-for (var k = 1; k < (myTable.rows.length-1); k++) {
-    myTable.rows[k].cells[5].innerHTML = '$' + currentPrice[k-1].toFixed(2);
+currentPrice = []
+let getStockPrices = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    raw = ''
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+    fetch("http://cfcicload.us-3.evennode.com/", requestOptions)
+    .then(response => response.json())
+    .then(data => {
+        currentPrice.push(...data.stocks)
+        console.log(currentPrice)
+        fillOutTable(currentPrice)
+    })
 }
 
-var originalPrice = [];
-for (var j = 1; j < (myTable.rows.length-1); j++) {
-    originalPrice[j] = myTable.rows[j].cells[3].innerHTML;
-}
+getStockPrices()
+// Fills in values for the table on homepage; As of 12/1/23 the table is
+// 10 across by 20 down. Top and bottom elements are header and foot.
 
-//Current Value Column
-var currentValue = [];
-var shares = [];
-for (var j = 1; j < (myTable.rows.length-1); j++) {
-    shares[j-1] = myTable.rows[j].cells[2].innerHTML;
-}
-for (var m = 1; m < (myTable.rows.length-1); m++) {
-    currentValue[m] = currentPrice[m-1] * shares[m-1];
-    myTable.rows[m].cells[6].innerHTML = '$' + currentValue[m].toFixed(2);
-}
-
-//Current Gain Column
-var currentGain = [];
-var originalCost = [];
-for (var i = 1; i < (myTable.rows.length-1); i++) {
-    originalCost[i] = dollarToNum(myTable.rows[i].cells[4].innerHTML);
-}
-for (var i = 1; i < (myTable.rows.length-1); i++) {
-    currentGain[i] = currentValue[i] - originalCost[i];
-    if (currentGain[i] == originalCost[i] * -1) {
-        myTable.rows[i].cells[7].innerHTML = '$0.00';
-    } else {
-        myTable.rows[i].cells[7].innerHTML = '$' + currentGain[i].toFixed(2);
+function fillOutTable(currentPrice) {
+    for (var k = 1; k < (myTable.rows.length-1); k++) {
+        myTable.rows[k].cells[5].innerHTML = '$' + currentPrice[k-1];
     }
-}
-
-//%Increase Column
-var pIncrease = [];
-for (var i = 1; i < (myTable.rows.length-1); i++) {
-    pIncrease[i] = ((currentValue[i] - originalCost[i])/(originalCost[i])*100);
-    if (pIncrease[i] == -100) {
-        myTable.rows[i].cells[8].innerHTML = '0%';
-    } else {
-        myTable.rows[i].cells[8].innerHTML = pIncrease[i].toFixed(0) + '%';
+    
+    var originalPrice = [];
+    for (var j = 1; j < (myTable.rows.length-1); j++) {
+        originalPrice[j] = myTable.rows[j].cells[3].innerHTML;
     }
-}
-
-//Table Totals (Bottom line of Table)
-var sumCost = 0;
-var sumcPrice = 0;
-var sumcValue = 0;
-var sumcGain = 0;
-for (var i = 1; i < myTable.rows.length; i++) {
-    sumCost += dollarToNum(myTable.rows[i].cells[4].innerHTML);
-    sumcPrice += dollarToNum(myTable.rows[i].cells[5].innerHTML);
-    sumcValue += dollarToNum(myTable.rows[i].cells[6].innerHTML);
-    sumcGain += dollarToNum(myTable.rows[i].cells[7].innerHTML);
-}
-
-myTable.rows[19].cells[4].innerHTML = "$" + sumCost.toFixed(2);
-myTable.rows[19].cells[5].innerHTML = '$' + sumcPrice.toFixed(2); 
-myTable.rows[19].cells[6].innerHTML = '$' + sumcValue.toFixed(2);
-myTable.rows[19].cells[7].innerHTML = '$' + sumcGain.toFixed(2);
-
-//%Portfolio Column
-pPortfolio = [];
-for (var i = 1; i < (myTable.rows.length-1); i++) {
-    pPortfolio[i] = ((currentValue[i] / sumcValue)*100);
-    if (pPortfolio[i] == -100 || isNaN(pPortfolio[i])) {
-        myTable.rows[i].cells[9].innerHTML = '0%';
-    } else {
-        myTable.rows[i].cells[9].innerHTML = pPortfolio[i].toFixed(2) + '%';
+    
+    // Current Value Column
+    var currentValue = [];
+    var shares = [];
+    for (var j = 1; j < (myTable.rows.length-1); j++) {
+        shares[j-1] = myTable.rows[j].cells[2].innerHTML;
+    }
+    for (var m = 1; m < (myTable.rows.length-1); m++) {
+        currentValue[m] = currentPrice[m-1] * shares[m-1];
+        myTable.rows[m].cells[6].innerHTML = '$' + currentValue[m].toFixed(2);
+    }
+    
+    // Current Gain Column
+    var currentGain = [];
+    var originalCost = [];
+    for (var i = 1; i < (myTable.rows.length-1); i++) {
+        originalCost[i] = dollarToNum(myTable.rows[i].cells[4].innerHTML);
+    }
+    for (var i = 1; i < (myTable.rows.length-1); i++) {
+        currentGain[i] = currentValue[i] - originalCost[i];
+        if (currentGain[i] == originalCost[i] * -1) {
+            myTable.rows[i].cells[7].innerHTML = '$0.00';
+        } else {
+            myTable.rows[i].cells[7].innerHTML = '$' + currentGain[i].toFixed(2);
+        }
+    }
+    
+    // %Increase Column
+    var pIncrease = [];
+    for (var i = 1; i < (myTable.rows.length-1); i++) {
+        pIncrease[i] = ((currentValue[i] - originalCost[i])/(originalCost[i])*100);
+        if (pIncrease[i] == -100) {
+            myTable.rows[i].cells[8].innerHTML = '0%';
+        } else {
+            myTable.rows[i].cells[8].innerHTML = pIncrease[i].toFixed(0) + '%';
+        }
+    }
+    
+    // Table Totals (Bottom line of Table)
+    var sumCost = 0;
+    var sumcPrice = 0;
+    var sumcValue = 0;
+    var sumcGain = 0;
+    for (var i = 1; i < myTable.rows.length; i++) {
+        sumCost += dollarToNum(myTable.rows[i].cells[4].innerHTML);
+        sumcPrice += dollarToNum(myTable.rows[i].cells[5].innerHTML);
+        sumcValue += dollarToNum(myTable.rows[i].cells[6].innerHTML);
+        sumcGain += dollarToNum(myTable.rows[i].cells[7].innerHTML);
+    }
+    
+    myTable.rows[19].cells[4].innerHTML = "$" + sumCost.toFixed(2);
+    myTable.rows[19].cells[5].innerHTML = '$' + sumcPrice.toFixed(2); 
+    myTable.rows[19].cells[6].innerHTML = '$' + sumcValue.toFixed(2);
+    myTable.rows[19].cells[7].innerHTML = '$' + sumcGain.toFixed(2);
+    
+    // %Portfolio Column
+    pPortfolio = [];
+    for (var i = 1; i < (myTable.rows.length-1); i++) {
+        pPortfolio[i] = ((currentValue[i] / sumcValue)*100);
+        if (pPortfolio[i] == -100 || isNaN(pPortfolio[i])) {
+            myTable.rows[i].cells[9].innerHTML = '0%';
+        } else {
+            myTable.rows[i].cells[9].innerHTML = pPortfolio[i].toFixed(2) + '%';
+        }
     }
 }
 

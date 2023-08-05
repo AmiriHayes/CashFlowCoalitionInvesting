@@ -7,6 +7,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
 	<title>Cash Flow Coalitition Investment Club</title>
 </head>
+
 <script defer>
   document.addEventListener('DOMContentLoaded', populateMemberPage);
   function populateMemberPage() { 
@@ -18,10 +19,9 @@
     document.getElementById("shares").innerHTML = `${data["Item"]["share"]}`
     document.getElementById("percentage").innerHTML = `${data["Item"]["percentage"]}%`
   }
-  // {"Item": {"holdings": "900", "percentage": "15", "password": "password", "share": "60", "ID": "amirihayes"}, "ResponseMetadata": {"RequestId": "ISCHG4UUOUCV77D7JKQQ0NLMFNVV4KQNSO5AEMVJF66Q9ASUAAJG", "HTTPStatusCode": 200, "HTTPHeaders": {"server": "Server", "date": "Mon, 26 Jun 2023 14:50:11 GMT", "content-type": "application/x-amz-json-1.0", "content-length": "128", "connection": "keep-alive", "x-amzn-requestid": "ISCHG4UUOUCV77D7JKQQ0NLMFNVV4KQNSO5AEMVJF66Q9ASUAAJG", "x-amz-crc32": "3080975235"}, "RetryAttempts": 0}}
 </script>
-<body>
 
+<body>
 	<!-- HEADER OF THE WEBSITE, on every page-->
 	<header> 
             <button class="nav-toggle" aria-label="toggle navigation">
@@ -51,33 +51,27 @@
   <div class="flex-container">
     <div>
       <h5>HOLDINGS</h5>
-      <p id="holdings"></p>
+      <p id = "holdings"></p>
     </div>
     <div>
       <h5>SHARES</h5>
-      <p id="shares"></p>
+      <p id = "shares"></p>
     </div>
     <div >
       <h5>PERCENTAGE</h5>
-      <p id="percentage"></p>
+      <p id = "percentage"></p>
     </div>  
   </div>
 
 	<!-- POWERPOINT ARCHIVE -->
-    
-    <div class="dropdown">
-      <h3 class="titleI">Our Powerpoints & Info:</h3>
-      <div class="dropdown-content">
-        <a href="#"><div>Powerpoint 1</div></a>
-        <a href="#"><div>Powerpoint 2</div></a>
-        <a href="#"><div>Powerpoint 3</div></a>
-        <a href="#"><div>Powerpoint 4</div></a>
-        <a href="#"><div>Powerpoint 5</div></a>
-      </div>
-    </div>
+  <h3 class = "titleI">
+    <a 
+      class = "memberLink"
+      href = "https://drive.google.com/drive/folders/1JF-UAOgZnxXf29TSdTUN0HI3ftGIzZ7V?usp=sharing"
+      target="_blank"> CFCIC Google Drive </a>
+  </h3>
 
   <!-- REAL ESTATE -->
-	
 
 <script src="index.js"></script>
 
