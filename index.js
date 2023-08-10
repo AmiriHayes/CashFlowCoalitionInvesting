@@ -76,27 +76,40 @@ document.addEventListener('DOMContentLoaded', init);
 function init() {
     let query_one = window.matchMedia("(max-width: 800px)");
     let query_two = window.matchMedia("(max-width: 500px)");
+    let query_three = window.matchMedia("(min-width: 800px)");
+
+    if (query_one.matches && query_two.matches) {
+        for (var i = 0; i < myTable.rows.length; i++) {
+            myTable.rows[i].deleteCell(1); //delete date column
+            myTable.rows[i].deleteCell(8); //delete %increase
+            myTable.rows[i].deleteCell(7); //delete %portfolio
+            myTable.rows[i].deleteCell(6); //delete %portfolio
+            myTable.rows[i].deleteCell(1); //delete # of stocks
+            myTable.rows[i].deleteCell(1); //delete price
+            myTable.rows[i].deleteCell(2); //delete current price
+            getStockPrices(q1=false, q2=true)
+        }
+    }
+
     if (query_one.matches) {
         for (var i = 0; i < myTable.rows.length; i++) {
             myTable.rows[i].deleteCell(1); //delete date column
             myTable.rows[i].deleteCell(8); //delete %increase
             myTable.rows[i].deleteCell(7); //delete %portfolio
             myTable.rows[i].deleteCell(6); //delete %portfolio
+            getStockPrices(q1=true, q2=false)
         }
     }
-    if (query_two.matches) {
-        for (var i = 0; i < myTable.rows.length; i++) {
-            myTable.rows[i].deleteCell(1); //delete # of stocks
-            myTable.rows[i].deleteCell(1); //delete price
-            myTable.rows[i].deleteCell(2); //delete current price
-        }
+
+    if (query_three.matches) {
+        getStockPrices()
     }
 }
 
 var myTable = document.getElementById('table');
 
 currentPrice = []
-let getStockPrices = () => {
+let getStockPrices = (q1, q2) => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     raw = ''
@@ -109,18 +122,38 @@ let getStockPrices = () => {
     .then(response => response.json())
     .then(data => {
         currentPrice.push(...data.stocks)
-        console.log(currentPrice)
-        fillOutTable(currentPrice)
+        fillOutTable(currentPrice, q1, q2)
     })
 }
 
-getStockPrices()
 // Fills in values for the table on homepage; As of 12/1/23 the table is
 // 10 across by 20 down. Top and bottom elements are header and foot.
 
-function fillOutTable(currentPrice) {
-    for (var k = 1; k < (myTable.rows.length-1); k++) {
-        myTable.rows[k].cells[5].innerHTML = '$' + currentPrice[k-1];
+function fillOutTable(currentPrice, q1 = false, q2 = false) {
+    if (q2 == true) {
+        // myTable.rows[0].cells[1].innerHTML = "Current Price"
+        // myTable.rows[0].cells[2].innerHTML = "Current Value"
+        shares = [2.00, 16.45, 9, 0.18, 0.11, 15, 0.5, 8, 0.29, 2, 3, 0.02, 4, 0.02, 2, 4, 5, 0.03]
+        for (var k = 1; k < myTable.rows.length-1; k++) {
+            myTable.rows[k].cells[2].innerHTML = '$' + (currentPrice[k-1] * shares[k-1]).toFixed(2);
+        }
+        myTable.rows[0].style.display = 'none';
+        myTable.rows[19].style.display = 'none';
+        // let sum = 0;
+        // for (let i = 0; i < currentPrice.length; i++) sum += (currentPrice[i] * shares[i]);
+        // myTable.rows[19].cells[2].innerHTML = ''
+        // myTable.deleteRow(-1)
+        return
+    }
+
+    if (q1 == true) {
+        for (var k = 1; k < (myTable.rows.length-1); k++) {
+            myTable.rows[k].cells[4].innerHTML = '$' + currentPrice[k-1];
+        }
+    } else {
+        for (var k = 1; k < (myTable.rows.length-1); k++) {
+            myTable.rows[k].cells[5].innerHTML = '$' + currentPrice[k-1];
+        }
     }
     
     var originalPrice = [];
@@ -131,14 +164,25 @@ function fillOutTable(currentPrice) {
     // Current Value Column
     var currentValue = [];
     var shares = [];
-    for (var j = 1; j < (myTable.rows.length-1); j++) {
-        shares[j-1] = myTable.rows[j].cells[2].innerHTML;
-    }
-    for (var m = 1; m < (myTable.rows.length-1); m++) {
-        currentValue[m] = currentPrice[m-1] * shares[m-1];
-        myTable.rows[m].cells[6].innerHTML = '$' + currentValue[m].toFixed(2);
-    }
     
+    if (q1) {
+        shares = [2.00, 16.45, 9, 0.18, 0.11, 15, 0.5, 8, 0.29, 2, 3, 0.02, 4, 0.02, 2, 4, 5, 0.03]
+        for (var m = 1; m < (myTable.rows.length-1); m++) { 
+            currentValue[m] = currentPrice[m-1] * shares[m-1];
+            myTable.rows[m].cells[5].innerHTML = '$' + currentValue[m].toFixed(2);
+        }
+        myTable.rows[19].cells[5].innerHTML = '$' + currentValue.reduce((a, b) => a + b, 0).toFixed(2)
+        return
+    } else {
+        for (var j = 1; j < (myTable.rows.length-1); j++) {
+            shares[j-1] = myTable.rows[j].cells[2].innerHTML;
+        }
+        for (var m = 1; m < (myTable.rows.length-1); m++) {
+            currentValue[m] = currentPrice[m-1] * shares[m-1];
+            myTable.rows[m].cells[6].innerHTML = '$' + currentValue[m].toFixed(2);
+        }
+    }
+
     // Current Gain Column
     var currentGain = [];
     var originalCost = [];
